@@ -9,4 +9,4 @@ https://portal.azure.com/#@csabameszarosyahoocom.onmicrosoft.com/resource/subscr
 
 
 
-[See the WIKI for more details](https://github.com/darc-blue-book/showcase-app/wiki/Useful-links)
+[See the WIKI for more details](https://github.com/darc-blue-book/showcase-app/wiki)
