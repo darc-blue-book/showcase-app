@@ -2,10 +2,10 @@
 react, springboot, mongodb based skeleton app
 
 After cloning this repo you should
-* ./mvnw
+* ./mvnw #in terminal one
+* npm start #in terminal two
 * this will build the application and start the local server
-* and access the mongo database on the Azure subscription on 
-https://portal.azure.com/#@csabameszarosyahoocom.onmicrosoft.com/resource/subscriptions/ee46e542-fbff-4bf1-9ef3-5b280952c252/resourceGroups/WithDB/providers/Microsoft.DocumentDb/databaseAccounts/abax-cosmos-account/overview
+* you can access the local server in http://localhost:9000/ (npm) or http://localhost:8080/ (maven)
 
 
 
