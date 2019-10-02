@@ -1,4 +1,6 @@
 # showcase-bluebook
+https://showcase-darc-blue-book.azurewebsites.net/
+
 react, springboot, mongodb based skeleton app
 
 After cloning this repo you should
