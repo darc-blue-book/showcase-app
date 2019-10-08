@@ -16,7 +16,7 @@ export const Home = (props: IHomeProp) => {
   return (
     <Row>
       <Col md="9">
-        <h2>Welcome, DARC Developer!</h2>
+        <h2>Welcome, DARC Developer!  TEST!</h2>
         <p className="lead">This will be our landing page, and you can edit the content in showcase-bluebook/src/main/webapp/app/modules/home/home.tsx</p>
         {account && account.login ? (
           <div>
