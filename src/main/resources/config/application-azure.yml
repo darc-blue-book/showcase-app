@@ -39,8 +39,8 @@ spring:
       enabled: false
   data:
     mongodb:
-      uri: mongodb://abax-cosmos-account:bfuv2XP9KbCQFPzcewjKDy7Ziu98IjOOnFyjeWrn0HiNavR3J0AccSLCvyTffaJkdgNKIw0jtunYHdFku2mdXg==@abax-cosmos-account.documents.azure.com:10255/?ssl=true&replicaSet=globaldb
-      database: abax-cosmos-account
+      uri: mongodb://team3-mongo-account:seQz3ANzh0EjgFSFNd6kpOiVIeHN3zV8UoxWTPMqLTUnfhRvjGQIXE35Sxo4ziiIwztf5w96uxr3IvmZ4cbopw==@team3-mongo-account.documents.azure.com:10255/?ssl=true&replicaSet=globaldb
+      database: team3-mongo-account
   mail:
     host: localhost
     port: 25
