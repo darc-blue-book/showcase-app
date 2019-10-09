@@ -187,4 +187,12 @@ public class UserResource {
         userService.deleteUser(login);
         return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "A user is deleted with identifier " + login, login)).build();
     }
+    
+    @GetMapping("/users/{name}")
+    public ResponseEntity<UserDTO> getSpecificUser(@PathVariable String name) {
+    	 return ResponseUtil.wrapOrNotFound(
+    	            userService.getUserByFirstName(name)
+    	                .map(UserDTO::new));
+    }
+    
 }
