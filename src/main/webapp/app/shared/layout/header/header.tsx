@@ -23,7 +23,7 @@ const Header = (props: IHeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const renderDevRibbon = () =>
-    props.isInProduction === false ? (
+    props.isInProduction === false && false ? (
       <div className="ribbon dev">
         <a href="">Development</a>
       </div>
