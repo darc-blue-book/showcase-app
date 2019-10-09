@@ -284,24 +284,13 @@
                 <version>1.7.0</version>
                 <configuration>
                     <schemaVersion>v2</schemaVersion>
-                    <resourceGroup>WithDB</resourceGroup>
-                    <appName>showcase-darc-blue-book</appName>
+                    <resourceGroup>team3-rg</resourceGroup>
+                    <appName>darc-blue-book</appName>
                     <runtime>
                         <os>linux</os>
                         <javaVersion>jre8</javaVersion>
                         <webContainer>jre8</webContainer>
                     </runtime>
-                    <appSettings>
-                        <!--JVM OPTIONS -->
-                        <property>
-                            <name>JAVA_OPTS</name>
-                            <value>-Xmx512m -Xms512m</value>
-                        </property>
-                        <property>
-                            <name>SPRING_OPTS</name>
-                            <value>-Dspring.profiles.active=azure</value>
-                        </property>
-                    </appSettings>
                     <pricingTier>P1v2</pricingTier>
                     <region>westus</region>
                     <deployment>
