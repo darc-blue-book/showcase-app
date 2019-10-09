@@ -291,6 +291,17 @@
                         <javaVersion>jre8</javaVersion>
                         <webContainer>jre8</webContainer>
                     </runtime>
+                    <appSettings>
+                        <!--JVM OPTIONS -->
+                        <property>
+                            <name>JAVA_OPTS</name>
+                            <value>-Xmx512m -Xms512m</value>
+                        </property>
+                        <property>
+                            <name>SPRING_OPTS</name>
+                            <value>-Dspring.profiles.active=azure</value>
+                        </property>
+                    </appSettings>
                     <pricingTier>P1v2</pricingTier>
                     <region>westus</region>
                     <deployment>
