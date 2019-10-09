@@ -12,9 +12,9 @@ import java.io.IOException;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 
-class MongoImageTest {
+class MongoImageIT {
 
-    @Test
+//    @Test
     void testLoadAll(){
         Mongo mongo = new Mongo("localhost", 27017);
         DB db = mongo.getDB("imagedb");
@@ -26,7 +26,7 @@ class MongoImageTest {
         }
     }
 
-    @Test
+//    @Test
     void testSaveInDockerMongo() throws IOException {
 
         Mongo mongo = new Mongo("localhost", 27017);
