@@ -1,0 +1,45 @@
+{
+    "name": "Sponsor",
+    "fields": [
+        {
+            "fieldName": "iban",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "currency",
+            "fieldType": "Currency",
+            "fieldValues": "USD,AUD,POUND,EURO,REPEE,YEN"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "sponsor",
+            "relationshipName": "userId",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "project",
+            "otherEntityRelationshipName": "sponsor",
+            "relationshipName": "projectId",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191009171233",
+    "entityTableName": "sponsor",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
