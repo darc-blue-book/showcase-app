@@ -37,7 +37,7 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017
-#      uri: mongodb://abax-cosmos-account:bfuv2XP9KbCQFPzcewjKDy7Ziu98IjOOnFyjeWrn0HiNavR3J0AccSLCvyTffaJkdgNKIw0jtunYHdFku2mdXg==@abax-cosmos-account.documents.azure.com:10255/?ssl=true&replicaSet=globaldb
+#       uri: mongodb://abax-cosmos-account:bfuv2XP9KbCQFPzcewjKDy7Ziu98IjOOnFyjeWrn0HiNavR3J0AccSLCvyTffaJkdgNKIw0jtunYHdFku2mdXg==@abax-cosmos-account.documents.azure.com:10255/?ssl=true&replicaSet=globaldb
       database: abax-cosmos-account
   mail:
     host: localhost
