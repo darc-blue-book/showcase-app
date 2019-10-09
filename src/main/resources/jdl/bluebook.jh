@@ -6,6 +6,9 @@ entity Project {
     description String
     funds Double
     image String
+    city String
+    country String
+    score Long
 }
 
 entity Expert {

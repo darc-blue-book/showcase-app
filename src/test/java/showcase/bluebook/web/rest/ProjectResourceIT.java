@@ -55,6 +55,16 @@ public class ProjectResourceIT {
     private static final String DEFAULT_IMAGE = "AAAAAAAAAA";
     private static final String UPDATED_IMAGE = "BBBBBBBBBB";
 
+    private static final String DEFAULT_CITY = "AAAAAAAAAA";
+    private static final String UPDATED_CITY = "BBBBBBBBBB";
+
+    private static final String DEFAULT_COUNTRY = "AAAAAAAAAA";
+    private static final String UPDATED_COUNTRY = "BBBBBBBBBB";
+
+    private static final Long DEFAULT_SCORE = 1L;
+    private static final Long UPDATED_SCORE = 2L;
+    private static final Long SMALLER_SCORE = 1L - 1L;
+
     @Autowired
     private ProjectRepository projectRepository;
 
@@ -99,7 +109,10 @@ public class ProjectResourceIT {
             .end(DEFAULT_END)
             .description(DEFAULT_DESCRIPTION)
             .funds(DEFAULT_FUNDS)
-            .image(DEFAULT_IMAGE);
+            .image(DEFAULT_IMAGE)
+            .city(DEFAULT_CITY)
+            .country(DEFAULT_COUNTRY)
+            .score(DEFAULT_SCORE);
         return project;
     }
     /**
@@ -115,7 +128,10 @@ public class ProjectResourceIT {
             .end(UPDATED_END)
             .description(UPDATED_DESCRIPTION)
             .funds(UPDATED_FUNDS)
-            .image(UPDATED_IMAGE);
+            .image(UPDATED_IMAGE)
+            .city(UPDATED_CITY)
+            .country(UPDATED_COUNTRY)
+            .score(UPDATED_SCORE);
         return project;
     }
 
@@ -145,6 +161,9 @@ public class ProjectResourceIT {
         assertThat(testProject.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testProject.getFunds()).isEqualTo(DEFAULT_FUNDS);
         assertThat(testProject.getImage()).isEqualTo(DEFAULT_IMAGE);
+        assertThat(testProject.getCity()).isEqualTo(DEFAULT_CITY);
+        assertThat(testProject.getCountry()).isEqualTo(DEFAULT_COUNTRY);
+        assertThat(testProject.getScore()).isEqualTo(DEFAULT_SCORE);
     }
 
     @Test
@@ -181,7 +200,10 @@ public class ProjectResourceIT {
             .andExpect(jsonPath("$.[*].end").value(hasItem(DEFAULT_END.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].funds").value(hasItem(DEFAULT_FUNDS.doubleValue())))
-            .andExpect(jsonPath("$.[*].image").value(hasItem(DEFAULT_IMAGE.toString())));
+            .andExpect(jsonPath("$.[*].image").value(hasItem(DEFAULT_IMAGE.toString())))
+            .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
+            .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())))
+            .andExpect(jsonPath("$.[*].score").value(hasItem(DEFAULT_SCORE.intValue())));
     }
     
     @Test
@@ -199,7 +221,10 @@ public class ProjectResourceIT {
             .andExpect(jsonPath("$.end").value(DEFAULT_END.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.funds").value(DEFAULT_FUNDS.doubleValue()))
-            .andExpect(jsonPath("$.image").value(DEFAULT_IMAGE.toString()));
+            .andExpect(jsonPath("$.image").value(DEFAULT_IMAGE.toString()))
+            .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
+            .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()))
+            .andExpect(jsonPath("$.score").value(DEFAULT_SCORE.intValue()));
     }
 
     @Test
@@ -224,7 +249,10 @@ public class ProjectResourceIT {
             .end(UPDATED_END)
             .description(UPDATED_DESCRIPTION)
             .funds(UPDATED_FUNDS)
-            .image(UPDATED_IMAGE);
+            .image(UPDATED_IMAGE)
+            .city(UPDATED_CITY)
+            .country(UPDATED_COUNTRY)
+            .score(UPDATED_SCORE);
 
         restProjectMockMvc.perform(put("/api/projects")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -241,6 +269,9 @@ public class ProjectResourceIT {
         assertThat(testProject.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testProject.getFunds()).isEqualTo(UPDATED_FUNDS);
         assertThat(testProject.getImage()).isEqualTo(UPDATED_IMAGE);
+        assertThat(testProject.getCity()).isEqualTo(UPDATED_CITY);
+        assertThat(testProject.getCountry()).isEqualTo(UPDATED_COUNTRY);
+        assertThat(testProject.getScore()).isEqualTo(UPDATED_SCORE);
     }
 
     @Test

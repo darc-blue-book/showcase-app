@@ -10,6 +10,9 @@ export interface IProject {
   description?: string;
   funds?: number;
   image?: string;
+  city?: string;
+  country?: string;
+  score?: number;
   expertId?: IExpert;
   initiatorId?: IUser;
   users?: IUser[];
