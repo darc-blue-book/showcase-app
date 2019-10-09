@@ -1,0 +1,62 @@
+{
+    "name": "Project",
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "start",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "end",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "funds",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "expert",
+            "otherEntityRelationshipName": "project",
+            "relationshipName": "expertId",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "project",
+            "relationshipName": "initiatorId",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "project",
+            "relationshipName": "user"
+        }
+    ],
+    "changelogDate": "20191009171231",
+    "entityTableName": "project",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

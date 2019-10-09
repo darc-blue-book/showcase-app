@@ -1,0 +1,37 @@
+entity Project {
+	id UUID
+    title String
+    start Instant
+    end Instant
+    description String
+    funds Double
+    image String
+}
+
+entity Expert {
+	id UUID
+    expertise String
+}
+
+entity Sponsor {
+	id UUID
+    iban String
+    amount Double
+    currency Currency
+}
+
+enum Currency {
+    USD, AUD, POUND, EURO, REPEE, YEN
+}
+
+relationship OneToOne {
+	Expert{userId} to User
+    Sponsor{userId} to User
+    Sponsor{projectId} to Project
+	Project{expertId} to Expert
+    Project{initiatorId} to User
+}
+
+relationship OneToMany {
+	Project to User
+}
