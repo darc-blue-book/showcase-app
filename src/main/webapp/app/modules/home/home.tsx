@@ -1,12 +1,17 @@
 import './home.scss';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { Row, Col, Alert } from 'reactstrap';
 
-import { IRootState } from 'app/shared/reducers';
+
+import { getEntities } from '../../entities/project/project.reducer';
+
+import Projects  from '../../entities/project/projects';
+// import { ProjectCard } from '../../entities/project/project-card';
+
+import { Row, Col, Alert } from 'reactstrap';
 
 export type IHomeProp = StateProps;
 
@@ -14,7 +19,7 @@ export const Home = (props: IHomeProp) => {
   const { account } = props;
 
   return (
-    <Row>
+    <Row >
       <Col >
         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
           <ol className="carousel-indicators">
@@ -55,6 +60,7 @@ export const Home = (props: IHomeProp) => {
         </div>
 
 
+<Projects match={} />
 
         <h2>Welcome, DARC Developer!  TEST!</h2>
         <p className="lead">This will be our landing page, and you can edit the content in showcase-bluebook/src/main/webapp/app/modules/home/home.tsx</p>
@@ -109,6 +115,11 @@ const mapStateToProps = storeState => ({
   isAuthenticated: storeState.authentication.isAuthenticated
 });
 
+const mapDispatchToProps = {
+  getEntities
+};
+
+type DispatchProps = typeof mapDispatchToProps;
 type StateProps = ReturnType<typeof mapStateToProps>;
 
 export default connect(mapStateToProps)(Home);
