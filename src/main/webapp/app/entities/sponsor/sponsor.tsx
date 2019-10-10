@@ -38,7 +38,7 @@ export class Sponsor extends React.Component<ISponsorProps> {
                   <th>Amount</th>
                   <th>Currency</th>
                   <th>User Id</th>
-                  <th>Project Id</th>
+                  <th>Project</th>
                   <th />
                 </tr>
               </thead>
@@ -54,7 +54,7 @@ export class Sponsor extends React.Component<ISponsorProps> {
                     <td>{sponsor.amount}</td>
                     <td>{sponsor.currency}</td>
                     <td>{sponsor.userId ? sponsor.userId.id : ''}</td>
-                    <td>{sponsor.projectId ? <Link to={`project/${sponsor.projectId.id}`}>{sponsor.projectId.id}</Link> : ''}</td>
+                    <td>{sponsor.project ? <Link to={`project/${sponsor.project.id}`}>{sponsor.project.id}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${sponsor.id}`} color="info" size="sm">

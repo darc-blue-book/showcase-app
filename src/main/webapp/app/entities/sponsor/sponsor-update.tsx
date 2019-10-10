@@ -21,7 +21,7 @@ export interface ISponsorUpdateProps extends StateProps, DispatchProps, RouteCom
 export interface ISponsorUpdateState {
   isNew: boolean;
   userIdId: string;
-  projectIdId: string;
+  projectId: string;
 }
 
 export class SponsorUpdate extends React.Component<ISponsorUpdateProps, ISponsorUpdateState> {
@@ -29,7 +29,7 @@ export class SponsorUpdate extends React.Component<ISponsorUpdateProps, ISponsor
     super(props);
     this.state = {
       userIdId: '0',
-      projectIdId: '0',
+      projectId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -139,8 +139,8 @@ export class SponsorUpdate extends React.Component<ISponsorUpdateProps, ISponsor
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="sponsor-projectId">Project Id</Label>
-                  <AvInput id="sponsor-projectId" type="select" className="form-control" name="projectId.id">
+                  <Label for="sponsor-project">Project</Label>
+                  <AvInput id="sponsor-project" type="select" className="form-control" name="project.id">
                     <option value="" key="0" />
                     {projects
                       ? projects.map(otherEntity => (

@@ -40,6 +40,11 @@ export class Project extends React.Component<IProjectProps> {
                   <th>Description</th>
                   <th>Funds</th>
                   <th>Image</th>
+                  <th>Volunteer Number</th>
+                  <th>Video Url</th>
+                  <th>City</th>
+                  <th>Country</th>
+                  <th>Score</th>
                   <th>Expert Id</th>
                   <th>Initiator Id</th>
                   <th />
@@ -63,6 +68,11 @@ export class Project extends React.Component<IProjectProps> {
                     <td>{project.description}</td>
                     <td>{project.funds}</td>
                     <td>{project.image}</td>
+                    <td>{project.volunteerNumber}</td>
+                    <td>{project.videoUrl}</td>
+                    <td>{project.city}</td>
+                    <td>{project.country}</td>
+                    <td>{project.score}</td>
                     <td>{project.expertId ? <Link to={`expert/${project.expertId.id}`}>{project.expertId.id}</Link> : ''}</td>
                     <td>{project.initiatorId ? project.initiatorId.id : ''}</td>
                     <td className="text-right">

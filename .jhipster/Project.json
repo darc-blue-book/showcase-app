@@ -24,6 +24,26 @@
         {
             "fieldName": "image",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "volunteerNumber",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "videoUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "score",
+            "fieldType": "Long"
         }
     ],
     "relationships": [
@@ -48,6 +68,12 @@
             "otherEntityName": "user",
             "otherEntityRelationshipName": "project",
             "relationshipName": "user"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "sponsor",
+            "otherEntityRelationshipName": "project",
+            "relationshipName": "sponsor"
         }
     ],
     "changelogDate": "20191009171231",

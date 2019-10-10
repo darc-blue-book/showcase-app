@@ -38,6 +38,21 @@ public class Project implements Serializable {
     @Field("image")
     private String image;
 
+    @Field("volunteer_number")
+    private Long volunteerNumber;
+
+    @Field("video_url")
+    private String videoUrl;
+
+    @Field("city")
+    private String city;
+
+    @Field("country")
+    private String country;
+
+    @Field("score")
+    private Long score;
+
     @DBRef
     @Field("expertId")
     private Expert expertId;
@@ -49,6 +64,10 @@ public class Project implements Serializable {
     @DBRef
     @Field("user")
     private Set<User> users = new HashSet<>();
+
+    @DBRef
+    @Field("sponsor")
+    private Set<Sponsor> sponsors = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
@@ -137,6 +156,71 @@ public class Project implements Serializable {
         this.image = image;
     }
 
+    public Long getVolunteerNumber() {
+        return volunteerNumber;
+    }
+
+    public Project volunteerNumber(Long volunteerNumber) {
+        this.volunteerNumber = volunteerNumber;
+        return this;
+    }
+
+    public void setVolunteerNumber(Long volunteerNumber) {
+        this.volunteerNumber = volunteerNumber;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public Project videoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+        return this;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public Project city(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public Project country(String country) {
+        this.country = country;
+        return this;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Long getScore() {
+        return score;
+    }
+
+    public Project score(Long score) {
+        this.score = score;
+        return this;
+    }
+
+    public void setScore(Long score) {
+        this.score = score;
+    }
+
     public Expert getExpertId() {
         return expertId;
     }
@@ -185,6 +269,31 @@ public class Project implements Serializable {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
+
+    public Set<Sponsor> getSponsors() {
+        return sponsors;
+    }
+
+    public Project sponsors(Set<Sponsor> sponsors) {
+        this.sponsors = sponsors;
+        return this;
+    }
+
+    public Project addSponsor(Sponsor sponsor) {
+        this.sponsors.add(sponsor);
+        sponsor.setProject(this);
+        return this;
+    }
+
+    public Project removeSponsor(Sponsor sponsor) {
+        this.sponsors.remove(sponsor);
+        sponsor.setProject(null);
+        return this;
+    }
+
+    public void setSponsors(Set<Sponsor> sponsors) {
+        this.sponsors = sponsors;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -213,6 +322,11 @@ public class Project implements Serializable {
             ", description='" + getDescription() + "'" +
             ", funds=" + getFunds() +
             ", image='" + getImage() + "'" +
+            ", volunteerNumber=" + getVolunteerNumber() +
+            ", videoUrl='" + getVideoUrl() + "'" +
+            ", city='" + getCity() + "'" +
+            ", country='" + getCountry() + "'" +
+            ", score=" + getScore() +
             "}";
     }
 }
