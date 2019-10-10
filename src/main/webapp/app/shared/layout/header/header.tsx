@@ -23,7 +23,7 @@ const Header = (props: IHeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const renderDevRibbon = () =>
-    props.isInProduction === false && false ? (
+    props.isInProduction === false ? (
       <div className="ribbon dev">
         <a href="">Development</a>
       </div>
@@ -35,7 +35,7 @@ const Header = (props: IHeaderProps) => {
 
   return (
     <div id="app-header">
-      {renderDevRibbon()}
+      {/* {renderDevRibbon()} */}
       <LoadingBar className="loading-bar" />
       <Navbar dark expand="sm" fixed="top" className="bg-dark">
         <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
