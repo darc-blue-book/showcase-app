@@ -20,26 +20,24 @@ export class Projects extends React.Component<IProjectProps> {
           <div className="col-md-4" key={`entity-${i}`}>
             <div className="card mb-4 shadow-sm">
               <img className="bd-placeholder-img card-img-top" width="100%" height="225" src={'content/images/projects/' + project.image} />
-              <span className="gsp">project.point GSP</span>
+              <span className="gsp">{project.score} GSP</span>
               <div className="card-body">
                 <p className="card-text">
                   <h3>{project.title}</h3>
                   {/* {project.start}, {project.end},  */}
-                  
-                  {project.description}, 
-                  We want to grow and plant new trees. We need your support to make Frankfurt more CO2 neutral!
+
+                  {project.description}
                 </p>
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="btn-group">
-                    <a type="button" className="btn btn-sm btn-outline-secondary"
-                      href="project-page.html" >View</a>
+                    <Link type="button" className="btn btn-sm btn-outline-primary" to={`/entity/project/${project.id}`}>View</Link>
                   </div>
                   <small className="text-muted btn btn-sm btn-outline-primary">Expert needed</small>
                   <small className="text-muted">Funded: 80%</small>
                 </div>
               </div>
             </div>
-            
+
             {/* <td>{project.expertId ? <Link to={`expert/${project.expertId.id}`}>{project.expertId.id}</Link> : ''}</td>
             <td>{project.initiatorId ? project.initiatorId.id : ''}</td> */}
           </div>
