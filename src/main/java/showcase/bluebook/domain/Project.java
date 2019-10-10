@@ -38,6 +38,15 @@ public class Project implements Serializable {
     @Field("image")
     private String image;
 
+    @Field("city")
+    private String city;
+
+    @Field("country")
+    private String country;
+
+    @Field("score")
+    private Long score;
+
     @DBRef
     @Field("expertId")
     private Expert expertId;
@@ -137,6 +146,45 @@ public class Project implements Serializable {
         this.image = image;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public Project city(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public Project country(String country) {
+        this.country = country;
+        return this;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Long getScore() {
+        return score;
+    }
+
+    public Project score(Long score) {
+        this.score = score;
+        return this;
+    }
+
+    public void setScore(Long score) {
+        this.score = score;
+    }
+
     public Expert getExpertId() {
         return expertId;
     }
@@ -213,6 +261,9 @@ public class Project implements Serializable {
             ", description='" + getDescription() + "'" +
             ", funds=" + getFunds() +
             ", image='" + getImage() + "'" +
+            ", city='" + getCity() + "'" +
+            ", country='" + getCountry() + "'" +
+            ", score=" + getScore() +
             "}";
     }
 }

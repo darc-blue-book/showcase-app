@@ -24,6 +24,18 @@
         {
             "fieldName": "image",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "score",
+            "fieldType": "Long"
         }
     ],
     "relationships": [

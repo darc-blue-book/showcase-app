@@ -150,6 +150,24 @@ export class ProjectUpdate extends React.Component<IProjectUpdateProps, IProject
                   <AvField id="project-image" type="text" name="image" />
                 </AvGroup>
                 <AvGroup>
+                  <Label id="cityLabel" for="project-city">
+                    City
+                  </Label>
+                  <AvField id="project-city" type="text" name="city" />
+                </AvGroup>
+                <AvGroup>
+                  <Label id="countryLabel" for="project-country">
+                    Country
+                  </Label>
+                  <AvField id="project-country" type="text" name="country" />
+                </AvGroup>
+                <AvGroup>
+                  <Label id="scoreLabel" for="project-score">
+                    Score
+                  </Label>
+                  <AvField id="project-score" type="string" className="form-control" name="score" />
+                </AvGroup>
+                <AvGroup>
                   <Label for="project-expertId">Expert Id</Label>
                   <AvInput id="project-expertId" type="select" className="form-control" name="expertId.id">
                     <option value="" key="0" />
