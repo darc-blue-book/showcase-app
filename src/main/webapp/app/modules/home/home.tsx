@@ -63,7 +63,7 @@ export const Home = (props: IHomeProp) => {
 
 
 
-        <Projects match={...this.props}/>
+        <Projects match={""}/>
 
 
 
