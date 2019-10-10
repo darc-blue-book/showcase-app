@@ -25,12 +25,11 @@
             "ownerSide": true
         },
         {
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityName": "project",
             "otherEntityRelationshipName": "sponsor",
-            "relationshipName": "projectId",
-            "otherEntityField": "id",
-            "ownerSide": true
+            "relationshipName": "project",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20191009171233",

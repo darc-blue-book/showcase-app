@@ -54,6 +54,26 @@ export class ProjectDetail extends React.Component<IProjectDetailProps> {
               <span id="image">Image</span>
             </dt>
             <dd>{projectEntity.image}</dd>
+            <dt>
+              <span id="volunteerNumber">Volunteer Number</span>
+            </dt>
+            <dd>{projectEntity.volunteerNumber}</dd>
+            <dt>
+              <span id="videoUrl">Video Url</span>
+            </dt>
+            <dd>{projectEntity.videoUrl}</dd>
+            <dt>
+              <span id="city">City</span>
+            </dt>
+            <dd>{projectEntity.city}</dd>
+            <dt>
+              <span id="country">Country</span>
+            </dt>
+            <dd>{projectEntity.country}</dd>
+            <dt>
+              <span id="score">Score</span>
+            </dt>
+            <dd>{projectEntity.score}</dd>
             <dt>Expert Id</dt>
             <dd>{projectEntity.expertId ? projectEntity.expertId.id : ''}</dd>
             <dt>Initiator Id</dt>

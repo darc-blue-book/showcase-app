@@ -6,6 +6,11 @@ entity Project {
     description String
     funds Double
     image String
+    volunteerNumber Long
+    videoUrl String
+    city String
+    country String
+    score Long
 }
 
 entity Expert {
@@ -27,11 +32,14 @@ enum Currency {
 relationship OneToOne {
 	Expert{userId} to User
     Sponsor{userId} to User
-    Sponsor{projectId} to Project
 	Project{expertId} to Expert
     Project{initiatorId} to User
 }
 
 relationship OneToMany {
 	Project to User
+}
+
+relationship ManyToOne {
+	Sponsor to Project
 }

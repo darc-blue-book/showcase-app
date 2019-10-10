@@ -1,4 +1,5 @@
 package showcase.bluebook.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -33,8 +34,9 @@ public class Sponsor implements Serializable {
     private User userId;
 
     @DBRef
-    @Field("projectId")
-    private Project projectId;
+    @Field("project")
+    @JsonIgnoreProperties("sponsors")
+    private Project project;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
@@ -97,17 +99,17 @@ public class Sponsor implements Serializable {
         this.userId = user;
     }
 
-    public Project getProjectId() {
-        return projectId;
+    public Project getProject() {
+        return project;
     }
 
-    public Sponsor projectId(Project project) {
-        this.projectId = project;
+    public Sponsor project(Project project) {
+        this.project = project;
         return this;
     }
 
-    public void setProjectId(Project project) {
-        this.projectId = project;
+    public void setProject(Project project) {
+        this.project = project;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
