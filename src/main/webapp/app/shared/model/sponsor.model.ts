@@ -8,7 +8,7 @@ export interface ISponsor {
   amount?: number;
   currency?: Currency;
   userId?: IUser;
-  projectId?: IProject;
+  project?: IProject;
 }
 
 export const defaultValue: Readonly<ISponsor> = {};

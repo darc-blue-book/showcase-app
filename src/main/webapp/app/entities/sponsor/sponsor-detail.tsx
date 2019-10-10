@@ -40,8 +40,8 @@ export class SponsorDetail extends React.Component<ISponsorDetailProps> {
             <dd>{sponsorEntity.currency}</dd>
             <dt>User Id</dt>
             <dd>{sponsorEntity.userId ? sponsorEntity.userId.id : ''}</dd>
-            <dt>Project Id</dt>
-            <dd>{sponsorEntity.projectId ? sponsorEntity.projectId.id : ''}</dd>
+            <dt>Project</dt>
+            <dd>{sponsorEntity.project ? sponsorEntity.project.id : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/sponsor" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
