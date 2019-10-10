@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { getEntities } from '../../entities/project/project.reducer';
 
-import Projects  from '../../entities/project/projects';
+import Projects from '../../entities/project/projects';
 // import { ProjectCard } from '../../entities/project/project-card';
 
 import { Row, Col, Alert } from 'reactstrap';
@@ -23,14 +23,14 @@ export const Home = (props: IHomeProp) => {
       <Col >
         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
           <ol className="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" ></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1" className="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1" ></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
 
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img src="content/images/carousel03.jpg" className="d-block w-100" alt="..." />
+              <img src="content/images/carousel01.jpg" className="d-block w-100" alt="..." />
               <div className="carousel-caption d-none d-md-block">
                 <h5>Start your project and find experts and sponsors.</h5>
               </div>
@@ -60,7 +60,7 @@ export const Home = (props: IHomeProp) => {
         </div>
 
 
-<Projects match={""} />
+        <Projects match={""} />
 
 
 
