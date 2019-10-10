@@ -25,21 +25,20 @@ export class Projects extends React.Component<IProjectProps> {
                 <p className="card-text">
                   <h3>{project.title}</h3>
                   {/* {project.start}, {project.end},  */}
-                  
-                  {project.description}, 
+
+                  {project.description},
                   We want to grow and plant new trees. We need your support to make Frankfurt more CO2 neutral!
                 </p>
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="btn-group">
-                    <a type="button" className="btn btn-sm btn-outline-secondary"
-                      href="project-page.html" >View</a>
+                    <Link type="button" className="btn btn-sm btn-outline-primary" to={`/entity/project/${project.id}`}>View</Link>
                   </div>
                   <small className="text-muted btn btn-sm btn-outline-primary">Expert needed</small>
                   <small className="text-muted">Funded: 80%</small>
                 </div>
               </div>
             </div>
-            
+
             {/* <td>{project.expertId ? <Link to={`expert/${project.expertId.id}`}>{project.expertId.id}</Link> : ''}</td>
             <td>{project.initiatorId ? project.initiatorId.id : ''}</td> */}
           </div>

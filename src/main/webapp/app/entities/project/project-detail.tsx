@@ -23,13 +23,29 @@ export class ProjectDetail extends React.Component<IProjectDetailProps> {
       <Row>
         <Col md="8">
           <h2>
-            Project [<b>{projectEntity.id}</b>]
+            {projectEntity.title}
           </h2>
           <dl className="jh-entity-details">
+            <dd>
+              <img className="bd-placeholder-img" width="195px" height="129px" src={'content/images/projects/' + projectEntity.image} />
+            </dd>
             <dt>
-              <span id="title">Title</span>
+              <span id="description">Description</span>
             </dt>
-            <dd>{projectEntity.title}</dd>
+            <dd>{projectEntity.description}</dd>
+            <dt>
+              <span id="city">City</span>
+            </dt>
+            <dd>{projectEntity.city}</dd>
+            <dt>
+              <span id="country">Country</span>
+            </dt>
+            <dd>{projectEntity.country}</dd>
+            <dt>
+              <span id="score">Score</span>
+            </dt>
+            <dd>{projectEntity.score}</dd>
+
             <dt>
               <span id="start">Start</span>
             </dt>
@@ -43,17 +59,13 @@ export class ProjectDetail extends React.Component<IProjectDetailProps> {
               <TextFormat value={projectEntity.end} type="date" format={APP_DATE_FORMAT} />
             </dd>
             <dt>
-              <span id="description">Description</span>
-            </dt>
-            <dd>{projectEntity.description}</dd>
-            <dt>
               <span id="funds">Funds</span>
             </dt>
             <dd>{projectEntity.funds}</dd>
-            <dt>
+            {/* <dt>
               <span id="image">Image</span>
             </dt>
-            <dd>{projectEntity.image}</dd>
+            <dd>{projectEntity.image}</dd> */}
             <dt>
               <span id="volunteerNumber">Volunteer Number</span>
             </dt>
@@ -62,18 +74,6 @@ export class ProjectDetail extends React.Component<IProjectDetailProps> {
               <span id="videoUrl">Video Url</span>
             </dt>
             <dd>{projectEntity.videoUrl}</dd>
-            <dt>
-              <span id="city">City</span>
-            </dt>
-            <dd>{projectEntity.city}</dd>
-            <dt>
-              <span id="country">Country</span>
-            </dt>
-            <dd>{projectEntity.country}</dd>
-            <dt>
-              <span id="score">Score</span>
-            </dt>
-            <dd>{projectEntity.score}</dd>
             <dt>Expert Id</dt>
             <dd>{projectEntity.expertId ? projectEntity.expertId.id : ''}</dd>
             <dt>Initiator Id</dt>
