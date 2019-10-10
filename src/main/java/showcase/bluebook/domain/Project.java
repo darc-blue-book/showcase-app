@@ -36,7 +36,10 @@ public class Project implements Serializable {
     private Double funds;
 
     @Field("image")
-    private String image;
+    private byte[] image;
+
+    @Field("image_content_type")
+    private String imageContentType;
 
     @DBRef
     @Field("expertId")
@@ -124,17 +127,30 @@ public class Project implements Serializable {
         this.funds = funds;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public Project image(String image) {
+    public Project image(byte[] image) {
         this.image = image;
         return this;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public String getImageContentType() {
+        return imageContentType;
+    }
+
+    public Project imageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
+        return this;
+    }
+
+    public void setImageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
     }
 
     public Expert getExpertId() {
@@ -174,11 +190,13 @@ public class Project implements Serializable {
 
     public Project addUser(User user) {
         this.users.add(user);
+        //user.setProject(this);
         return this;
     }
 
     public Project removeUser(User user) {
         this.users.remove(user);
+       // user.setProject(null);
         return this;
     }
 
@@ -213,6 +231,7 @@ public class Project implements Serializable {
             ", description='" + getDescription() + "'" +
             ", funds=" + getFunds() +
             ", image='" + getImage() + "'" +
+            ", imageContentType='" + getImageContentType() + "'" +
             "}";
     }
 }

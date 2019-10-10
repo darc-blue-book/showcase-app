@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { ICrudGetAllAction } from 'react-jhipster';
+import { openFile, byteSize, ICrudGetAllAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -34,6 +34,7 @@ export class Expert extends React.Component<IExpertProps> {
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Picture</th>
                   <th>Expertise</th>
                   <th>User Id</th>
                   <th />
@@ -46,6 +47,17 @@ export class Expert extends React.Component<IExpertProps> {
                       <Button tag={Link} to={`${match.url}/${expert.id}`} color="link" size="sm">
                         {expert.id}
                       </Button>
+                    </td>
+                    <td>
+                      {expert.picture ? (
+                        <div>
+                          <a onClick={openFile(expert.pictureContentType, expert.picture)}>
+                            <img src={`data:${expert.pictureContentType};base64,${expert.picture}`} style={{ maxHeight: '30px' }} />
+                            &nbsp;
+                          </a>
+                         
+                        </div>
+                      ) : null}
                     </td>
                     <td>{expert.expertise}</td>
                     <td>{expert.userId ? expert.userId.id : ''}</td>

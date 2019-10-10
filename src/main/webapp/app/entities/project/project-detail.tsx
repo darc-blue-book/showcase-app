@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
-import { ICrudGetAction, TextFormat } from 'react-jhipster';
+import { ICrudGetAction, openFile, byteSize, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -53,7 +53,18 @@ export class ProjectDetail extends React.Component<IProjectDetailProps> {
             <dt>
               <span id="image">Image</span>
             </dt>
-            <dd>{projectEntity.image}</dd>
+            <dd>
+              {projectEntity.image ? (
+                <div>
+                  <a onClick={openFile(projectEntity.imageContentType, projectEntity.image)}>
+                    <img src={`data:${projectEntity.imageContentType};base64,${projectEntity.image}`} style={{ maxHeight: '30px' }} />
+                  </a>
+                  <span>
+                    {projectEntity.imageContentType}, {byteSize(projectEntity.image)}
+                  </span>
+                </div>
+              ) : null}
+            </dd>
             <dt>Expert Id</dt>
             <dd>{projectEntity.expertId ? projectEntity.expertId.id : ''}</dd>
             <dt>Initiator Id</dt>

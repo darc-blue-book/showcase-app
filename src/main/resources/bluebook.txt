@@ -5,12 +5,11 @@ entity Project {
     end Instant
     description String
     funds Double
-    image ImageBlob
+    image String
 }
 
 entity Expert {
 	id UUID
-    picture ImageBlob
     expertise String
 }
 

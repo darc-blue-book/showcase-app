@@ -17,6 +17,12 @@ public class Expert implements Serializable {
     @Id
     private String id;
 
+    @Field("picture")
+    private byte[] picture;
+
+    @Field("picture_content_type")
+    private String pictureContentType;
+
     @Field("expertise")
     private String expertise;
 
@@ -31,6 +37,32 @@ public class Expert implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public Expert picture(byte[] picture) {
+        this.picture = picture;
+        return this;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public String getPictureContentType() {
+        return pictureContentType;
+    }
+
+    public Expert pictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
+        return this;
+    }
+
+    public void setPictureContentType(String pictureContentType) {
+        this.pictureContentType = pictureContentType;
     }
 
     public String getExpertise() {
@@ -80,6 +112,8 @@ public class Expert implements Serializable {
     public String toString() {
         return "Expert{" +
             "id=" + getId() +
+            ", picture='" + getPicture() + "'" +
+            ", pictureContentType='" + getPictureContentType() + "'" +
             ", expertise='" + getExpertise() + "'" +
             "}";
     }

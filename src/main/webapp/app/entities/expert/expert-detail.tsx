@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
-import { ICrudGetAction } from 'react-jhipster';
+import { ICrudGetAction, openFile, byteSize } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -26,6 +26,21 @@ export class ExpertDetail extends React.Component<IExpertDetailProps> {
             Expert [<b>{expertEntity.id}</b>]
           </h2>
           <dl className="jh-entity-details">
+            <dt>
+              <span id="picture">Picture</span>
+            </dt>
+            <dd>
+              {expertEntity.picture ? (
+                <div>
+                  <a onClick={openFile(expertEntity.pictureContentType, expertEntity.picture)}>
+                    <img src={`data:${expertEntity.pictureContentType};base64,${expertEntity.picture}`} style={{ maxHeight: '30px' }} />
+                  </a>
+                  <span>
+                    {expertEntity.pictureContentType}, {byteSize(expertEntity.picture)}
+                  </span>
+                </div>
+              ) : null}
+            </dd>
             <dt>
               <span id="expertise">Expertise</span>
             </dt>

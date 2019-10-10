@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label } from 'reactstrap';
 import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
-import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
+import { ICrudGetAction, ICrudGetAllAction, setFileData, openFile, byteSize, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
@@ -11,7 +11,7 @@ import { IExpert } from 'app/shared/model/expert.model';
 import { getEntities as getExperts } from 'app/entities/expert/expert.reducer';
 import { IUser } from 'app/shared/model/user.model';
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
-import { getEntity, updateEntity, createEntity, reset } from './project.reducer';
+import { getEntity, updateEntity, createEntity, setBlob, reset } from './project.reducer';
 import { IProject } from 'app/shared/model/project.model';
 import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
@@ -53,6 +53,14 @@ export class ProjectUpdate extends React.Component<IProjectUpdateProps, IProject
     this.props.getUsers();
   }
 
+  onBlobChange = (isAnImage, name) => event => {
+    setFileData(event, (contentType, data) => this.props.setBlob(name, data, contentType), isAnImage);
+  };
+
+  clearBlob = name => () => {
+    this.props.setBlob(name, undefined, undefined);
+  };
+
   saveEntity = (event, errors, values) => {
     values.start = convertDateTimeToServer(values.start);
     values.end = convertDateTimeToServer(values.end);
@@ -79,6 +87,8 @@ export class ProjectUpdate extends React.Component<IProjectUpdateProps, IProject
   render() {
     const { projectEntity, experts, users, loading, updating } = this.props;
     const { isNew } = this.state;
+
+    const { image, imageContentType } = projectEntity;
 
     return (
       <div>
@@ -144,10 +154,34 @@ export class ProjectUpdate extends React.Component<IProjectUpdateProps, IProject
                   <AvField id="project-funds" type="string" className="form-control" name="funds" />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="imageLabel" for="project-image">
-                    Image
-                  </Label>
-                  <AvField id="project-image" type="text" name="image" />
+                  <AvGroup>
+                    <Label id="imageLabel" for="image">
+                      Image
+                    </Label>
+                    <br />
+                    {image ? (
+                      <div>
+                        <a onClick={openFile(imageContentType, image)}>
+                          <img src={`data:${imageContentType};base64,${image}`} style={{ maxHeight: '100px' }} />
+                        </a>
+                        <br />
+                        <Row>
+                          <Col md="11">
+                            <span>
+                              {imageContentType}, {byteSize(image)}
+                            </span>
+                          </Col>
+                          <Col md="1">
+                            <Button color="danger" onClick={this.clearBlob('image')}>
+                              <FontAwesomeIcon icon="times-circle" />
+                            </Button>
+                          </Col>
+                        </Row>
+                      </div>
+                    ) : null}
+                    <input id="file_image" type="file" onChange={this.onBlobChange(true, 'image')} accept="image/*" />
+                    <AvInput type="hidden" name="image" value={image} />
+                  </AvGroup>
                 </AvGroup>
                 <AvGroup>
                   <Label for="project-expertId">Expert Id</Label>
@@ -208,6 +242,7 @@ const mapDispatchToProps = {
   getUsers,
   getEntity,
   updateEntity,
+  setBlob,
   createEntity,
   reset
 };

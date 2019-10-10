@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 
@@ -31,6 +32,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @SpringBootTest(classes = BluebookApp.class)
 public class ExpertResourceIT {
+
+    private static final byte[] DEFAULT_PICTURE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_PICTURE = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_PICTURE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_PICTURE_CONTENT_TYPE = "image/png";
 
     private static final String DEFAULT_EXPERTISE = "AAAAAAAAAA";
     private static final String UPDATED_EXPERTISE = "BBBBBBBBBB";
@@ -74,6 +80,8 @@ public class ExpertResourceIT {
      */
     public static Expert createEntity() {
         Expert expert = new Expert()
+            .picture(DEFAULT_PICTURE)
+            .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE)
             .expertise(DEFAULT_EXPERTISE);
         return expert;
     }
@@ -85,6 +93,8 @@ public class ExpertResourceIT {
      */
     public static Expert createUpdatedEntity() {
         Expert expert = new Expert()
+            .picture(UPDATED_PICTURE)
+            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
             .expertise(UPDATED_EXPERTISE);
         return expert;
     }
@@ -109,6 +119,8 @@ public class ExpertResourceIT {
         List<Expert> expertList = expertRepository.findAll();
         assertThat(expertList).hasSize(databaseSizeBeforeCreate + 1);
         Expert testExpert = expertList.get(expertList.size() - 1);
+        assertThat(testExpert.getPicture()).isEqualTo(DEFAULT_PICTURE);
+        assertThat(testExpert.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
         assertThat(testExpert.getExpertise()).isEqualTo(DEFAULT_EXPERTISE);
     }
 
@@ -141,6 +153,8 @@ public class ExpertResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(expert.getId())))
+            .andExpect(jsonPath("$.[*].pictureContentType").value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))))
             .andExpect(jsonPath("$.[*].expertise").value(hasItem(DEFAULT_EXPERTISE.toString())));
     }
     
@@ -154,6 +168,8 @@ public class ExpertResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(expert.getId()))
+            .andExpect(jsonPath("$.pictureContentType").value(DEFAULT_PICTURE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.picture").value(Base64Utils.encodeToString(DEFAULT_PICTURE)))
             .andExpect(jsonPath("$.expertise").value(DEFAULT_EXPERTISE.toString()));
     }
 
@@ -174,6 +190,8 @@ public class ExpertResourceIT {
         // Update the expert
         Expert updatedExpert = expertRepository.findById(expert.getId()).get();
         updatedExpert
+            .picture(UPDATED_PICTURE)
+            .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
             .expertise(UPDATED_EXPERTISE);
 
         restExpertMockMvc.perform(put("/api/experts")
@@ -185,6 +203,8 @@ public class ExpertResourceIT {
         List<Expert> expertList = expertRepository.findAll();
         assertThat(expertList).hasSize(databaseSizeBeforeUpdate);
         Expert testExpert = expertList.get(expertList.size() - 1);
+        assertThat(testExpert.getPicture()).isEqualTo(UPDATED_PICTURE);
+        assertThat(testExpert.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
         assertThat(testExpert.getExpertise()).isEqualTo(UPDATED_EXPERTISE);
     }
 

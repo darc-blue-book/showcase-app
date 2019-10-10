@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 
@@ -52,8 +53,10 @@ public class ProjectResourceIT {
     private static final Double UPDATED_FUNDS = 2D;
     private static final Double SMALLER_FUNDS = 1D - 1D;
 
-    private static final String DEFAULT_IMAGE = "AAAAAAAAAA";
-    private static final String UPDATED_IMAGE = "BBBBBBBBBB";
+    private static final byte[] DEFAULT_IMAGE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_IMAGE = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_IMAGE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_IMAGE_CONTENT_TYPE = "image/png";
 
     @Autowired
     private ProjectRepository projectRepository;
@@ -99,7 +102,8 @@ public class ProjectResourceIT {
             .end(DEFAULT_END)
             .description(DEFAULT_DESCRIPTION)
             .funds(DEFAULT_FUNDS)
-            .image(DEFAULT_IMAGE);
+            .image(DEFAULT_IMAGE)
+            .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE);
         return project;
     }
     /**
@@ -115,7 +119,8 @@ public class ProjectResourceIT {
             .end(UPDATED_END)
             .description(UPDATED_DESCRIPTION)
             .funds(UPDATED_FUNDS)
-            .image(UPDATED_IMAGE);
+            .image(UPDATED_IMAGE)
+            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE);
         return project;
     }
 
@@ -145,6 +150,7 @@ public class ProjectResourceIT {
         assertThat(testProject.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testProject.getFunds()).isEqualTo(DEFAULT_FUNDS);
         assertThat(testProject.getImage()).isEqualTo(DEFAULT_IMAGE);
+        assertThat(testProject.getImageContentType()).isEqualTo(DEFAULT_IMAGE_CONTENT_TYPE);
     }
 
     @Test
@@ -181,7 +187,8 @@ public class ProjectResourceIT {
             .andExpect(jsonPath("$.[*].end").value(hasItem(DEFAULT_END.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].funds").value(hasItem(DEFAULT_FUNDS.doubleValue())))
-            .andExpect(jsonPath("$.[*].image").value(hasItem(DEFAULT_IMAGE.toString())));
+            .andExpect(jsonPath("$.[*].imageContentType").value(hasItem(DEFAULT_IMAGE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))));
     }
     
     @Test
@@ -199,7 +206,8 @@ public class ProjectResourceIT {
             .andExpect(jsonPath("$.end").value(DEFAULT_END.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.funds").value(DEFAULT_FUNDS.doubleValue()))
-            .andExpect(jsonPath("$.image").value(DEFAULT_IMAGE.toString()));
+            .andExpect(jsonPath("$.imageContentType").value(DEFAULT_IMAGE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)));
     }
 
     @Test
@@ -224,7 +232,8 @@ public class ProjectResourceIT {
             .end(UPDATED_END)
             .description(UPDATED_DESCRIPTION)
             .funds(UPDATED_FUNDS)
-            .image(UPDATED_IMAGE);
+            .image(UPDATED_IMAGE)
+            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE);
 
         restProjectMockMvc.perform(put("/api/projects")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -241,6 +250,7 @@ public class ProjectResourceIT {
         assertThat(testProject.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testProject.getFunds()).isEqualTo(UPDATED_FUNDS);
         assertThat(testProject.getImage()).isEqualTo(UPDATED_IMAGE);
+        assertThat(testProject.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);
     }
 
     @Test

@@ -2,6 +2,11 @@
     "name": "Expert",
     "fields": [
         {
+            "fieldName": "picture",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
             "fieldName": "expertise",
             "fieldType": "String"
         }

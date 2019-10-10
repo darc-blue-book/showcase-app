@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import { openFile, byteSize, ICrudGetAllAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -62,7 +62,17 @@ export class Project extends React.Component<IProjectProps> {
                     </td>
                     <td>{project.description}</td>
                     <td>{project.funds}</td>
-                    <td>{project.image}</td>
+                    <td>
+                      {project.image ? (
+                        <div>
+                          <a onClick={openFile(project.imageContentType, project.image)}>
+                            <img src={`data:${project.imageContentType};base64,${project.image}`} style={{ maxHeight: '30px' }} />
+                            &nbsp;
+                          </a>
+                          
+                        </div>
+                      ) : null}
+                    </td>
                     <td>{project.expertId ? <Link to={`expert/${project.expertId.id}`}>{project.expertId.id}</Link> : ''}</td>
                     <td>{project.initiatorId ? project.initiatorId.id : ''}</td>
                     <td className="text-right">

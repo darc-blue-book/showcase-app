@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label } from 'reactstrap';
 import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
-import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
+import { ICrudGetAction, ICrudGetAllAction, setFileData, openFile, byteSize, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
 import { IUser } from 'app/shared/model/user.model';
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
-import { getEntity, updateEntity, createEntity, reset } from './expert.reducer';
+import { getEntity, updateEntity, createEntity, setBlob, reset } from './expert.reducer';
 import { IExpert } from 'app/shared/model/expert.model';
 import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
@@ -46,6 +46,14 @@ export class ExpertUpdate extends React.Component<IExpertUpdateProps, IExpertUpd
     this.props.getUsers();
   }
 
+  onBlobChange = (isAnImage, name) => event => {
+    setFileData(event, (contentType, data) => this.props.setBlob(name, data, contentType), isAnImage);
+  };
+
+  clearBlob = name => () => {
+    this.props.setBlob(name, undefined, undefined);
+  };
+
   saveEntity = (event, errors, values) => {
     if (errors.length === 0) {
       const { expertEntity } = this.props;
@@ -70,6 +78,8 @@ export class ExpertUpdate extends React.Component<IExpertUpdateProps, IExpertUpd
     const { expertEntity, users, loading, updating } = this.props;
     const { isNew } = this.state;
 
+    const { picture, pictureContentType } = expertEntity;
+
     return (
       <div>
         <Row className="justify-content-center">
@@ -89,6 +99,36 @@ export class ExpertUpdate extends React.Component<IExpertUpdateProps, IExpertUpd
                     <AvInput id="expert-id" type="text" className="form-control" name="id" required readOnly />
                   </AvGroup>
                 ) : null}
+                <AvGroup>
+                  <AvGroup>
+                    <Label id="pictureLabel" for="picture">
+                      Picture
+                    </Label>
+                    <br />
+                    {picture ? (
+                      <div>
+                        <a onClick={openFile(pictureContentType, picture)}>
+                          <img src={`data:${pictureContentType};base64,${picture}`} style={{ maxHeight: '100px' }} />
+                        </a>
+                        <br />
+                        <Row>
+                          <Col md="11">
+                            <span>
+                              {pictureContentType}, {byteSize(picture)}
+                            </span>
+                          </Col>
+                          <Col md="1">
+                            <Button color="danger" onClick={this.clearBlob('picture')}>
+                              <FontAwesomeIcon icon="times-circle" />
+                            </Button>
+                          </Col>
+                        </Row>
+                      </div>
+                    ) : null}
+                    <input id="file_picture" type="file" onChange={this.onBlobChange(true, 'picture')} accept="image/*" />
+                    <AvInput type="hidden" name="picture" value={picture} />
+                  </AvGroup>
+                </AvGroup>
                 <AvGroup>
                   <Label id="expertiseLabel" for="expert-expertise">
                     Expertise
@@ -139,6 +179,7 @@ const mapDispatchToProps = {
   getUsers,
   getEntity,
   updateEntity,
+  setBlob,
   createEntity,
   reset
 };

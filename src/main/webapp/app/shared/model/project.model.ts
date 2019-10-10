@@ -9,7 +9,8 @@ export interface IProject {
   end?: Moment;
   description?: string;
   funds?: number;
-  image?: string;
+  imageContentType?: string;
+  image?: any;
   expertId?: IExpert;
   initiatorId?: IUser;
   users?: IUser[];

@@ -12,6 +12,7 @@ export const ACTION_TYPES = {
   CREATE_EXPERT: 'expert/CREATE_EXPERT',
   UPDATE_EXPERT: 'expert/UPDATE_EXPERT',
   DELETE_EXPERT: 'expert/DELETE_EXPERT',
+  SET_BLOB: 'expert/SET_BLOB',
   RESET: 'expert/RESET'
 };
 
@@ -86,6 +87,17 @@ export default (state: ExpertState = initialState, action): ExpertState => {
         updateSuccess: true,
         entity: {}
       };
+    case ACTION_TYPES.SET_BLOB: {
+      const { name, data, contentType } = action.payload;
+      return {
+        ...state,
+        entity: {
+          ...state.entity,
+          [name]: data,
+          [name + 'ContentType']: contentType
+        }
+      };
+    }
     case ACTION_TYPES.RESET:
       return {
         ...initialState
@@ -139,6 +151,15 @@ export const deleteEntity: ICrudDeleteAction<IExpert> = id => async dispatch => 
   dispatch(getEntities());
   return result;
 };
+
+export const setBlob = (name, data, contentType?) => ({
+  type: ACTION_TYPES.SET_BLOB,
+  payload: {
+    name,
+    data,
+    contentType
+  }
+});
 
 export const reset = () => ({
   type: ACTION_TYPES.RESET
