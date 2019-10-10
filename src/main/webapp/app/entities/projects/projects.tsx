@@ -20,7 +20,7 @@ export class Projects extends React.Component<IProjectProps> {
           <div className="col-md-4" key={`entity-${i}`}>
             <div className="card mb-4 shadow-sm">
               <img className="bd-placeholder-img card-img-top" width="100%" height="225" src={'content/images/projects/' + project.image} />
-              <span className="gsp">project.point GSP</span>
+              <span className="gsp">{project.score} GSP</span>
               <div className="card-body">
                 <p className="card-text">
                   <h3>{project.title}</h3>

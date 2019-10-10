@@ -59,13 +59,7 @@ export const Home = (props: IHomeProp) => {
           </a>
         </div>
 
-
-
-
-
         <Projects match={""}/>
-
-
 
       </Col>
     </Row>
