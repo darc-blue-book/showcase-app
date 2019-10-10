@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { getEntities } from '../../entities/project/project.reducer';
 
-import Projects from '../../entities/project/projects';
+import Projects from 'app/entities/projects';
 // import { ProjectCard } from '../../entities/project/project-card';
 
 import { Row, Col, Alert } from 'reactstrap';
@@ -61,7 +61,9 @@ export const Home = (props: IHomeProp) => {
 
 
 
-        <Projects match={""} />
+
+
+        <Projects match={...this.props}/>
 
 
 
